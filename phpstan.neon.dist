@@ -12,5 +12,5 @@ parameters:
     checkModelProperties: true
     reportUnmatchedIgnoredErrors: false
     ignoreErrors:
-        - '#^Trait Ritechoice23\\Reactions\\Traits\\CanReact is used zero times and is not analysed\.$#'
-        - '#^Trait Ritechoice23\\Reactions\\Traits\\HasReactions is used zero times and is not analysed\.$#'
+        - '#^Trait Ritechoice23\\Saveable\\Traits\\HasSaves is used zero times and is not analysed\.$#'
+        - '#^Trait Ritechoice23\\Saveable\\Traits\\IsSaveable is used zero times and is not analysed\.$#'
