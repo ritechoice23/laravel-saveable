@@ -1,0 +1,16 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: 5
+    paths:
+        - src
+        - config
+        - database
+    tmpDir: build/phpstan
+    checkOctaneCompatibility: true
+    checkModelProperties: true
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        - '#^Trait Ritechoice23\\Reactions\\Traits\\CanReact is used zero times and is not analysed\.$#'
+        - '#^Trait Ritechoice23\\Reactions\\Traits\\HasReactions is used zero times and is not analysed\.$#'
