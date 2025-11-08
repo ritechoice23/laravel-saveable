@@ -4,7 +4,6 @@ namespace Ritechoice23\Saveable\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Collection as SupportCollection;
@@ -53,7 +52,7 @@ trait HasSaves
 
     /**
      * Get actual saved models (not Save records).
-     * 
+     *
      * Best for single-type saved items. For mixed types, use savedItemsGrouped().
      */
     public function savedItems(?string $type = null): Builder
@@ -63,7 +62,7 @@ trait HasSaves
 
     /**
      * Get saved items grouped by model type (perfect for mixed saveable types).
-     * 
+     *
      * Note: This method returns a Collection of models grouped by type, not a Builder.
      * If you need to chain query methods, use savedItems($type) for a specific type instead.
      * For mixed types with additional constraints, you'll need to query each type separately.
@@ -83,7 +82,7 @@ trait HasSaves
             // Convert morph alias to class name if needed
             $modelClass = $this->getMorphClassFromType($type);
 
-            if (!$modelClass) {
+            if (! $modelClass) {
                 continue;
             }
 
@@ -183,7 +182,7 @@ trait HasSaves
     {
         $save = $this->getSavedRecord($model);
 
-        if (!$save) {
+        if (! $save) {
             return false;
         }
 
@@ -199,7 +198,7 @@ trait HasSaves
     {
         $save = $this->getSavedRecord($model);
 
-        if (!$save) {
+        if (! $save) {
             return false;
         }
 
@@ -241,7 +240,7 @@ trait HasSaves
             ->select('saveable_type')
             ->distinct()
             ->pluck('saveable_type')
-            ->map(fn($t) => $this->getMorphClassFromType($t))
+            ->map(fn ($t) => $this->getMorphClassFromType($t))
             ->filter()
             ->unique()
             ->values()
@@ -323,7 +322,7 @@ trait HasSaves
             ->select('saveable_type')
             ->distinct()
             ->pluck('saveable_type')
-            ->map(fn($t) => $this->getMorphClassFromType($t))
+            ->map(fn ($t) => $this->getMorphClassFromType($t))
             ->filter()
             ->unique()
             ->values()
@@ -346,7 +345,7 @@ trait HasSaves
         // Convert morph alias to class name if needed
         $modelClass = $this->getMorphClassFromType($type);
 
-        if (!$modelClass) {
+        if (! $modelClass) {
             return $this->newQuery()->whereRaw('1 = 0');
         }
 
@@ -380,7 +379,7 @@ trait HasSaves
                 // Convert morph alias to class name if needed
                 $modelClass = $self->getMorphClassFromType($type);
 
-                if (!$modelClass) {
+                if (! $modelClass) {
                     continue;
                 }
 
@@ -406,7 +405,7 @@ trait HasSaves
         // Convert morph alias to class name if needed
         $modelClass = $this->getMorphClassFromType($type);
 
-        if (!$modelClass) {
+        if (! $modelClass) {
             return $this->newQuery()->whereRaw('1 = 0');
         }
 
@@ -441,7 +440,7 @@ trait HasSaves
                 // Convert morph alias to class name if needed
                 $modelClass = $self->getMorphClassFromType($type);
 
-                if (!$modelClass) {
+                if (! $modelClass) {
                     continue;
                 }
 

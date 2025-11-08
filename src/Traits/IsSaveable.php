@@ -56,7 +56,7 @@ trait IsSaveable
             // Convert morph alias to class name if needed
             $modelClass = $this->getMorphClassFromType($type);
 
-            if (!$modelClass) {
+            if (! $modelClass) {
                 continue;
             }
 
@@ -155,12 +155,12 @@ trait IsSaveable
     {
         return $query->addSelect([
             'is_saved' => Save::selectRaw('CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END')
-                ->whereColumn('saveable_id', $query->getModel()->getTable() . '.id')
+                ->whereColumn('saveable_id', $query->getModel()->getTable().'.id')
                 ->where('saveable_type', $query->getModel()->getMorphClass())
                 ->where('saver_type', $saver->getMorphClass())
                 ->where('saver_id', $saver->getKey()),
             'save_metadata' => Save::select('metadata')
-                ->whereColumn('saveable_id', $query->getModel()->getTable() . '.id')
+                ->whereColumn('saveable_id', $query->getModel()->getTable().'.id')
                 ->where('saveable_type', $query->getModel()->getMorphClass())
                 ->where('saver_type', $saver->getMorphClass())
                 ->where('saver_id', $saver->getKey())
@@ -192,7 +192,7 @@ trait IsSaveable
             ->select('saver_type')
             ->distinct()
             ->pluck('saver_type')
-            ->map(fn($t) => $this->getMorphClassFromType($t))
+            ->map(fn ($t) => $this->getMorphClassFromType($t))
             ->filter()
             ->unique()
             ->values()
@@ -215,7 +215,7 @@ trait IsSaveable
         // Convert morph alias to class name if needed
         $modelClass = $this->getMorphClassFromType($type);
 
-        if (!$modelClass) {
+        if (! $modelClass) {
             return $this->newQuery()->whereRaw('1 = 0');
         }
 
@@ -248,7 +248,7 @@ trait IsSaveable
                 // Convert morph alias to class name if needed
                 $modelClass = $self->getMorphClassFromType($type);
 
-                if (!$modelClass) {
+                if (! $modelClass) {
                     continue;
                 }
 
@@ -271,7 +271,7 @@ trait IsSaveable
      * Convert a morph alias to its full class name, or return the class name if already valid.
      * Works with both morphMap configured and non-configured scenarios.
      *
-     * @param string $type The type (either a full class name or morph alias)
+     * @param  string  $type  The type (either a full class name or morph alias)
      * @return string|null The full class name if valid, null otherwise
      */
     protected function getMorphClassFromType(string $type): ?string

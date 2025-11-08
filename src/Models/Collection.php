@@ -29,9 +29,11 @@ class Collection extends Model
             // Set collection_id to null for all saves in this collection
             $collection->saves()->update(['collection_id' => null]);
         });
-    }    /**
-         * Get the owner (who owns this collection).
-         */
+    }
+
+    /**
+     * Get the owner (who owns this collection).
+     */
     public function owner(): MorphTo
     {
         return $this->morphTo();

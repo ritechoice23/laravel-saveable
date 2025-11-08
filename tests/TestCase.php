@@ -15,7 +15,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn(string $modelName) => 'Ritechoice23\\Saveable\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
+            fn (string $modelName) => 'Ritechoice23\\Saveable\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
@@ -31,10 +31,10 @@ class TestCase extends Orchestra
         config()->set('database.default', 'testing');
 
         // Run package migrations
-        $collectionsMigration = include __DIR__ . '/../database/migrations/2025_11_08_000001_create_collections_table.php';
+        $collectionsMigration = include __DIR__.'/../database/migrations/2025_11_08_000001_create_collections_table.php';
         $collectionsMigration->up();
 
-        $savesMigration = include __DIR__ . '/../database/migrations/2025_11_08_000002_create_saves_table.php';
+        $savesMigration = include __DIR__.'/../database/migrations/2025_11_08_000002_create_saves_table.php';
         $savesMigration->up();
 
         // Create test tables
